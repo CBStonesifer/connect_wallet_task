@@ -1,0 +1,14 @@
+.token-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.token-card{
+    width: 40vw;
+    height: 15vh;
+    background-color:azure;
+    border: 2px solid grey;
+    border-radius: 10px;
+    margin: 5px;
+    text-align: left;
+}
