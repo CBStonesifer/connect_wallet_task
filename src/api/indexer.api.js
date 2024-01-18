@@ -29,11 +29,13 @@ const getContractMetadata = async (token) => {
 }
 
 const getBalances = async (walletAddress) => {
-    try {
-        const response = await getHeldTokens(walletAddress);
-        return response
-    } catch (error) {
-        console.log(error);
+    if(walletAddress !== undefined){
+        try {
+            const response = await getHeldTokens(walletAddress);
+            return response
+        } catch (error) {
+            console.log(error);
+        }
     }
 };
 

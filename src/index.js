@@ -3,11 +3,24 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ThirdwebProvider, ChainId, useAddress, metamaskWallet, phantomWallet } from '@thirdweb-dev/react'
+
+
+const desiredChainId = ChainId.Mainnet
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <div>
-    <App />
+    <ThirdwebProvider
+      activeChain={desiredChainId}
+      clientId="358074a0d9e3cd545a58e0925761970f"
+      supportedWallets={[
+        metamaskWallet({ recommended: true }),
+        phantomWallet({ recommended: true }),
+      ]}
+    >
+        <App/>
+    </ThirdwebProvider>   
   </div>
     
 );

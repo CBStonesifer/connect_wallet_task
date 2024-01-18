@@ -3,10 +3,13 @@ import { getBalances, getContractMetadata } from './api/indexer.api';
 import { useEffect, useState } from 'react'
 import TokenItem from './components/tokenItem';
 
-function App() {
+import { ConnectWallet, lightTheme, useAddress } from '@thirdweb-dev/react';
 
+function App() {
+  const myAddress = useAddress()
   const [tokenData, setMyTokenData] = useState([])
   const [inputAddress, setInputAddress] = useState("")
+  
 
   async function handleTokenBalances() {
     setMyTokenData([]);
@@ -35,28 +38,59 @@ function App() {
     setInputAddress(event.target.value)
   }
 
+  function handleDefaultAddress(){
+    if(myAddress === undefined){
+      return inputAddress
+    } else {
+      console.log(`Handling address:\n ${myAddress}`)
+      return myAddress
+    }
+  }
 
-  useEffect(() => {
-    const fetchDataFromBackend = async (inputAddress) => {
-      try {
-        const result = await getBalances(inputAddress);
-        if(result !== undefined){
-          setMyTokenData(result)
-        }
-      } catch (error) {
-        // Handle errors if needed
-      }
-    };
-    fetchDataFromBackend();
-  }, []);
+
+  // useEffect(() => {
+  //   console.log(`My address: ${myAddress}`)
+  //   let currentAddress = handleDefaultAddress()
+  //   const fetchDataFromBackend = async (inputAddress) => {
+  //     try {
+  //       const result = await getBalances(inputAddress);
+  //       if(result !== undefined){
+  //         setMyTokenData(result)
+  //       }
+  //     } catch (error) {
+  //       // Handle errors if needed
+  //     }
+  //   };
+  //   fetchDataFromBackend();
+  // }, [myAddress]);
+  useEffect(()=>{
+    console.log(`My address: ${myAddress}`)
+
+  }, [myAddress])
 
   return (
+    
     <div className="full_page">
       <div className='Connect-Container'>
-        <button className='view-submit'>Connect Wallet</button>
+      <ConnectWallet
+        theme={lightTheme({
+          colors: {
+            accentText: "#3dd8ff",
+            accentButtonBg: "#079fc5",
+            modalBg: "#ffffff",
+            dropdownBg: "#ffffff",
+            borderColor: "#6b6d76",
+            primaryText: "#bc43f4",
+            primaryButtonBg: "#d243e5",
+          },
+        })}
+        modalTitle={"Wallet"}
+        modalSize={"wide"}
+      />
       </div>
       <div className="App">
         <h1 className='heading_title'>Connect Wallet</h1>
+        <h4>{myAddress}</h4>
         <div>
           <input 
             className="address_input" 

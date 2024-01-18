@@ -1,5 +1,6 @@
 .full_page{
   background-image: linear-gradient(rgb(207, 246, 252), rgb(228, 163, 253));
+  margin: -20px;
   min-height: 1200px;
 }
 .heading_title{
@@ -39,6 +40,6 @@
   margin-left: 10%;
   width: 80%;
   border-radius: 50px;
-  margin-bottom: 10%;
+  margin-bottom: 100px;
   border: 2px solid grey;
 }
