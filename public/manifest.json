@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Connect Wallet Task",
+  "name": "Carter Stonesifer's Connect Wallet App",
   "icons": [
     {
       "src": "wallet_icon.ico",
