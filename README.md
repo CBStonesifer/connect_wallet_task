@@ -27,4 +27,5 @@ The project is hosted on Vercel online, no specific installation is needed if ru
 
 ### Known bugs
 
-I was not able to configure a `.env` file because even after requiring dotenv and configuring it in the application files, the error that `process` is undefined persisted.
+- I was not able to configure a `.env` file because even after requiring dotenv and configuring it in the application files, the error that `process` is undefined persisted.
+- ThirdWeb's API fails to fetch certain icons which appear in the console show failed GET requests.
