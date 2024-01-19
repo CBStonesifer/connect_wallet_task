@@ -9,12 +9,12 @@ function App() {
   const myAddress = useAddress()
   const [tokenData, setMyTokenData] = useState([])
   const [inputAddress, setInputAddress] = useState("")
-  
+  const [myWalletAddress, setMyWalletAddress] = useState("")
 
-  async function handleTokenBalances() {
+  async function handleTokenBalances(web3Address) {
     setMyTokenData([]);
-    const result = await getBalances(inputAddress);
-  
+    const result = await getBalances(web3Address);
+    console.log(`Viewing ${web3Address} tokens`)
     try {
       await Promise.all(
         result.map(async (tkn) => {
@@ -38,34 +38,9 @@ function App() {
     setInputAddress(event.target.value)
   }
 
-  function handleDefaultAddress(){
-    if(myAddress === undefined){
-      return inputAddress
-    } else {
-      console.log(`Handling address:\n ${myAddress}`)
-      return myAddress
-    }
-  }
-
-
-  // useEffect(() => {
-  //   console.log(`My address: ${myAddress}`)
-  //   let currentAddress = handleDefaultAddress()
-  //   const fetchDataFromBackend = async (inputAddress) => {
-  //     try {
-  //       const result = await getBalances(inputAddress);
-  //       if(result !== undefined){
-  //         setMyTokenData(result)
-  //       }
-  //     } catch (error) {
-  //       // Handle errors if needed
-  //     }
-  //   };
-  //   fetchDataFromBackend();
-  // }, [myAddress]);
   useEffect(()=>{
     console.log(`My address: ${myAddress}`)
-
+    setMyWalletAddress(myAddress)
   }, [myAddress])
 
   return (
@@ -90,7 +65,9 @@ function App() {
       </div>
       <div className="App">
         <h1 className='heading_title'>Connect Wallet</h1>
-        <h4>{myAddress}</h4>
+        
+        
+        <h4>Paste a Web3 address or view your wallet's tokens:</h4>
         <div>
           <input 
             className="address_input" 
@@ -98,7 +75,8 @@ function App() {
             placeholder='Paste Public Address...'
             onChange={handleInputAddress}
             />
-          <button className='view-submit' onClick={()=>handleTokenBalances()}>View Tokens</button>
+          <button className='view-submit' onClick={()=>handleTokenBalances(inputAddress)}>View Address Tokens</button>
+          <button className='view-submit' onClick={()=>handleTokenBalances(myWalletAddress)}>My Tokens</button>
         </div>
         <div>
           {tokenData.map((token, index) => {
@@ -112,8 +90,6 @@ function App() {
             )}  
           )}
         </div>
-        
-        
       </div>
     </div>
   );

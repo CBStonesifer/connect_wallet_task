@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ThirdwebProvider, ChainId, useAddress, metamaskWallet, phantomWallet } from '@thirdweb-dev/react'
+import { ThirdwebProvider, ChainId, metamaskWallet, phantomWallet } from '@thirdweb-dev/react'
 
 
 const desiredChainId = ChainId.Mainnet

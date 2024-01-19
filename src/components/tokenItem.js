@@ -7,11 +7,14 @@ function TokenItem(props) {
     return (
       <div className='token-container'>
         <div className='token-card'>
-          <div>
+          <div className='token-text'>
             <h4>{tokenName}</h4>
           </div>
+          <div className='token-text'>
+            Token Contract Address: {contractAddress}
+          </div>
           
-          Token Contract Address: {contractAddress}
+          
         </div>
       </div>
     );

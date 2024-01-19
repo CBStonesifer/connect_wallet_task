@@ -5,10 +5,16 @@
 }
 .token-card{
     width: 40vw;
+    min-width: 400px;
+
     height: 15vh;
     background-color:azure;
     border: 2px solid grey;
     border-radius: 10px;
     margin: 5px;
     text-align: left;
+}
+
+.token-text{
+    margin-left: 2%;
 }
