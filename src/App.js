@@ -11,7 +11,7 @@ function App() {
   const [inputAddress, setInputAddress] = useState("")
   const [myWalletAddress, setMyWalletAddress] = useState("")
 
-  async function handleTokenBalances(web3Address) {
+  async function handleTokenBalances(web3Address, type) {
     setMyTokenData([]);
     const result = await getBalances(web3Address);
     console.log(`Viewing ${web3Address} tokens`)
@@ -30,6 +30,12 @@ function App() {
         })
       );
     } catch (error) {
+      if(type === 'wallet'){
+        alert('Please connect your wallet')
+      }
+      else if(type === 'address'){
+        alert('Please enter a valid address')
+      }
       console.log(error);
     }
   }
@@ -75,8 +81,8 @@ function App() {
             placeholder='Paste Public Address...'
             onChange={handleInputAddress}
             />
-          <button className='view-submit' onClick={()=>handleTokenBalances(inputAddress)}>View Address Tokens</button>
-          <button className='view-submit' onClick={()=>handleTokenBalances(myWalletAddress)}>My Tokens</button>
+          <button className='view-submit' onClick={()=>handleTokenBalances(inputAddress, 'address')}>View Address Tokens</button>
+          <button className='view-submit' onClick={()=>handleTokenBalances(myWalletAddress, 'wallet')}>My Tokens</button>
         </div>
         <div>
           {tokenData.map((token, index) => {
